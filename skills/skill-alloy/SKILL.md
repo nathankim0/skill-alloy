@@ -54,15 +54,23 @@ Write the merged skill from scratch. Method and templates: `references/synthesis
 - never copy text; credit ideas in `ATTRIBUTIONS.md`; never take anything from a repo with no license
 
 ### 7. Package
-Scaffold the repo with the files in `references/packaging.md`: plugin and marketplace manifests, `LICENSE`, `CHANGELOG.md`, `ATTRIBUTIONS.md`, `AGENTS.md` plus `CLAUDE.md -> AGENTS.md`, `README.md` and `README.ko.md` with a language switch, and `assets/banner.png`.
+Repo conventions come from the **ossify** skill. Check it is available (`/ossify` or `~/.claude/skills/ossify`, or `claude plugin list | grep ossify`). If missing, install it:
 
-Generate the banner with GPT image generation through the Codex CLI, in the background, at the start of this step. Prompt template and fallback: `references/packaging.md#banner`. Look at the image before using it.
+```bash
+claude plugin marketplace add nathankim0/ossify
+claude plugin install ossify@ossify
+```
+
+A plugin installed mid-session loads next session; in that case read `skills/ossify/SKILL.md` and its references from the plugin cache and follow them directly.
+
+1. Write the skill-specific files yourself (`references/packaging.md`): `skills/<name>/`, plugin and marketplace manifests, `ATTRIBUTIONS.md`.
+2. Run **ossify in init mode** for everything else: `AGENTS.md` plus `CLAUDE.md -> AGENTS.md`, English and Korean READMEs with the banner, `LICENSE`, `CHANGELOG.md`, `.gitignore`. Give it the facts it needs for the README: why the skill exists (the trial failures), the conflict count, a real example, and the source repos for Credits.
 
 ### 8. Privacy scan
 Grep the repo for company names, internal project names, emails, internal URLs, home-directory paths, tokens, and anything from the user's private instructions. Fix every hit before the first commit. Commits are public forever.
 
 ### 9. Publish
-Commands: `references/publishing.md`. Validate, commit with the session's attribution line, create the public repo, push, tag `v1.0.0`, create the release, add topics.
+Use **ossify**: its commit and push step creates the public repo, then its release mode cuts `v1.0.0` (tag and GitHub release). Afterwards add topics: `gh repo edit <owner>/<repo> --add-topic claude-code,agent-skills,<topic>`. Skill-specific checks: `references/publishing.md`.
 
 Creating a public repo is outward-facing. Do it without asking only when the user's request explicitly says to upload or publish; otherwise confirm once.
 

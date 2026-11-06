@@ -31,12 +31,12 @@ skill-alloy는 그 하루를 반복 가능한 절차로 만든 것입니다.
 | 4. 설치 | 플러그인 마켓플레이스 또는 스킬 폴더, 이름 충돌은 바꿔서 설치 |
 | 5. 시험 | 각 스킬을 실제 작업에 불러서 잡은 것과 놓친 것을 기록 (필수) |
 | 6. 합성 | 200줄 이내 SKILL.md와 references, 충돌 기준표 `conflicts.md`를 새로 작성 |
-| 7. 패키징 | 플러그인 매니페스트, MIT 라이선스, CHANGELOG, ATTRIBUTIONS, AGENTS.md + CLAUDE.md 심볼릭 링크, 영어·한국어 README, GPT로 만든 배너 |
+| 7. 패키징 | 플러그인 매니페스트와 ATTRIBUTIONS를 쓰고, 나머지는 [ossify](https://github.com/nathankim0/ossify)로: AGENTS.md + CLAUDE.md 심볼릭 링크, 영어·한국어 README, GPT로 만든 배너, LICENSE, CHANGELOG |
 | 8. 개인정보 검사 | 회사명, 이메일, 내부 경로, 토큰이 공개 저장소에 들어가지 않게 |
-| 9. 배포 | 공개 저장소, `v1.0.0` 태그, GitHub 릴리스, 토픽 |
+| 9. 배포 | 공개 저장소를 만들고 ossify 릴리스 모드로 `v1.0.0` 태그와 GitHub 릴리스, 토픽 |
 | 10. 확인 | GitHub에서 다시 설치, 배너 주소, 심볼릭 링크, 릴리스 확인 |
 
-만들어지는 저장소마다 `AGENTS.md`가 들어갑니다. 이후 작업하는 에이전트는 수정할 때마다 커밋하고 push하며, 스킬 자체가 바뀔 때만 릴리스(버전 올림, CHANGELOG, 태그)합니다.
+패키징과 릴리스는 [ossify](https://github.com/nathankim0/ossify)가 맡습니다. 그래서 만들어지는 저장소마다 `AGENTS.md`가 들어갑니다. 이후 작업하는 에이전트는 수정할 때마다 커밋하고 push하며, 스킬 자체가 바뀔 때만 릴리스(버전 올림, CHANGELOG, 태그)합니다.
 
 ## 예시
 
@@ -50,6 +50,7 @@ skill-alloy는 그 하루를 반복 가능한 절차로 만든 것입니다.
 
 - 로그인된 [GitHub CLI](https://cli.github.com/) (`gh auth status`)
 - Claude Code (`claude plugin validate`와 설치 확인용)
+- 저장소 규칙과 릴리스용 [ossify](https://github.com/nathankim0/ossify) (없으면 자동 설치)
 - 배너용: 이미지 생성이 켜진 [Codex CLI](https://github.com/openai/codex) 또는 `OPENAI_API_KEY`. 둘 다 없으면 배너 없이 배포합니다.
 
 ## 설치
@@ -92,8 +93,8 @@ skills/skill-alloy/references/
   discovery.md                         검색어, 거르는 기준, 스팸 신호
   vetting.md                           격리, 훅·스크립트 검사, 라이선스
   synthesis.md                         규칙 추출, 충돌 기준표, SKILL.md 작성법
-  packaging.md                         매니페스트, AGENTS.md·README 템플릿, 배너 생성
-  publishing.md                        개인정보 검사, 릴리스 명령, 확인
+  packaging.md                         플러그인 매니페스트, ATTRIBUTIONS, ossify에 넘길 내용
+  publishing.md                        추가 개인정보 검사어, 릴리스 노트 추가 내용, 플러그인 확인
 .claude-plugin/                        Claude Code 플러그인·마켓플레이스 매니페스트
 ```
 

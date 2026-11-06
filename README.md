@@ -31,12 +31,12 @@ skill-alloy turns that day into a repeatable workflow.
 | 4. Install | plugin marketplaces or skill folders; rename collisions |
 | 5. Trial | invoke each skill on a real task and record what it caught and missed (mandatory) |
 | 6. Synthesize | original SKILL.md under 200 lines, references, and a `conflicts.md` ruling table |
-| 7. Package | plugin manifests, MIT license, CHANGELOG, ATTRIBUTIONS, AGENTS.md + CLAUDE.md symlink, English and Korean READMEs, a GPT-generated banner |
+| 7. Package | plugin manifests and ATTRIBUTIONS, then [ossify](https://github.com/nathankim0/ossify) for AGENTS.md + CLAUDE.md symlink, English and Korean READMEs, a GPT-generated banner, LICENSE, CHANGELOG |
 | 8. Privacy scan | no company names, emails, internal paths, or tokens in a public repo |
-| 9. Publish | public repo, tag `v1.0.0`, GitHub release, topics |
+| 9. Publish | public repo, then ossify's release mode for tag `v1.0.0` and the GitHub release; topics |
 | 10. Verify | install from GitHub, check the banner URL, the symlink, and the release |
 
-Every repo it creates gets an `AGENTS.md` that tells future agents to commit and push after every change, and to cut a release (version bump, CHANGELOG, tag) only when the skill itself changes.
+Packaging and releases are handled by [ossify](https://github.com/nathankim0/ossify), so every repo it creates gets an `AGENTS.md` that tells future agents to commit and push after every change, and to cut a release (version bump, CHANGELOG, tag) only when the skill itself changes.
 
 ## Example
 
@@ -50,6 +50,7 @@ Result: [nathankim0/ssul](https://github.com/nathankim0/ssul), with 16 source re
 
 - [GitHub CLI](https://cli.github.com/) logged in (`gh auth status`)
 - Claude Code (for `claude plugin validate` and install checks)
+- [ossify](https://github.com/nathankim0/ossify) for repo conventions and releases (installed automatically if missing)
 - For the banner: [Codex CLI](https://github.com/openai/codex) with image generation enabled, or an `OPENAI_API_KEY`. Without either, the repo ships without a banner.
 
 ## Install
@@ -92,8 +93,8 @@ skills/skill-alloy/references/
   discovery.md                         search queries, filters, spam signals
   vetting.md                           isolation, hook and script review, licenses
   synthesis.md                         extracting rules, the conflict table, writing SKILL.md
-  packaging.md                         manifests, AGENTS.md and README templates, banner generation
-  publishing.md                        privacy scan, release commands, verification
+  packaging.md                         plugin manifests, ATTRIBUTIONS, what to hand to ossify
+  publishing.md                        extra privacy terms, release-note extras, plugin verification
 .claude-plugin/                        Claude Code plugin and marketplace manifests
 ```
 
