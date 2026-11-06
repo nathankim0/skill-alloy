@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+## v1.1.0 (2026-11-06)
+
+### Changed
+- Packaging, READMEs, banner, AGENTS.md with the CLAUDE.md symlink, and releases now go through the [ossify](https://github.com/nathankim0/ossify) skill. skill-alloy installs it if missing.
+- `references/packaging.md` keeps only skill-specific files (plugin manifests, ATTRIBUTIONS) and what to hand to ossify.
+- `references/publishing.md` keeps only skill-specific checks (extra privacy terms, release-note extras, plugin verification).
+
 ## v1.0.0 (2026-11-06)
 
 First release.

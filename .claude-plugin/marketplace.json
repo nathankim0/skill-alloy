@@ -1,7 +1,7 @@
 {
   "name": "skill-alloy",
   "owner": { "name": "nathankim0", "url": "https://github.com/nathankim0" },
-  "metadata": { "description": "skill-alloy: melt many agent skills into one and ship it", "version": "1.0.0" },
+  "metadata": { "description": "skill-alloy: melt many agent skills into one and ship it", "version": "1.1.0" },
   "plugins": [
     {
       "name": "skill-alloy",
